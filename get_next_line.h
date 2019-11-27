@@ -6,14 +6,16 @@
 /*   By: mpark-ki <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/21 22:32:45 by mpark-ki          #+#    #+#             */
-/*   Updated: 2019/11/26 18:57:44 by mpark-ki         ###   ########.fr       */
+/*   Updated: 2019/11/27 20:41:07 by mpark-ki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef GET_NEXT_LINE_H
 # define GET_NEXT_LINE_H
-# include <unistd.h>
 # include <stdlib.h>
+# include <sys/types.h>
+# include <sys/uio.h>
+# include <unistd.h>
 int				get_next_line(int fd, char **line);
 typedef struct s_list
 {
