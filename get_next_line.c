@@ -6,29 +6,32 @@
 /*   By: mpark-ki <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/21 22:29:38 by mpark-ki          #+#    #+#             */
-/*   Updated: 2019/11/27 23:33:25 by mpark-ki         ###   ########.fr       */
+/*   Updated: 2019/12/01 20:16:13 by mpark-ki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 #include <stdio.h>
 
-static t_list	*give_me_head(int fd, char *buff, t_list *headlst)
+static int		ft_strlen(char *s)
 {
-	if (!headlst)
-		headlst = ft_lstnew(fd, buff);
-	return (headlst);
+	int		i;
+
+	i = 0;
+	while (s[i])
+		i++;
+	return (i);
 }
 
-static int		copyline(t_list *headlst, char **line, char *buff)
+static int		copyline(char **line, char *buff)
 {
 	char	*tmp_line;
 	char	*start;
 	int 	size;
 
-	size = 0;
 	if (!buff)
 		return (-1);
+	size = 0;
 	while (buff[size] != '\n' && buff[size])
 		size++;
 	tmp_line = (char *)malloc(sizeof(char) * size);
@@ -37,21 +40,40 @@ static int		copyline(t_list *headlst, char **line, char *buff)
 	while (size--)
 		*tmp_line++ = *buff++;
 	*line = start;
-	headlst->content = ++buff;
 	free(start);
-	if (*buff != '\n' && *buff)
+	printf("first cut line:%s\n", *line);
+	if (*buff != '\n')
 		return (0);
+	return (1);
+}
+
+static int		copycache(char *cache, char *buff)
+{
+	int		size;
+
+	size = 0;
+	printf("%d", ft_strlen(buff));
+	printf("cache cut buff:%s\n", buff);
+	if (!cache)
+	{
+		if ((cache = (char *)malloc(sizeof(char) * ft_strlen(buff))))
+			while (*buff)
+			{
+				cache[size] = *buff++;
+			}
+	}
+	printf("what is buff: %c\n", *buff);
+	printf("what is cache: %s\n", cache);
 	return (1);
 }
 
 #include <string.h>
 int		get_next_line(int fd, char **line)
 {
-	static	t_list *headlst;	
-	//t_list	nextlst;
-	char	*buff;
-	int		size;
-	int		result;
+	static char	*line_cache;	
+	char		*buff;
+	int			size;
+	int			result;
 
 	if (fd < 0)
 		return (fd);
@@ -60,19 +82,15 @@ int		get_next_line(int fd, char **line)
 		if ((size = read(fd, buff, BUFFER_SIZE)) > 0)
 		{
 			buff[size] = 0;
-			headlst = give_me_head(fd, buff, headlst);
-			result = copyline(headlst, line, buff);
+			result = copyline(line, &(*buff));
+			copycache(line_cache, &(*buff));
 			printf("my buff: %s\n", buff);
-			printf("line: %s\n", *line);
-			printf("content: %s\n", headlst->content);
+			printf("line: %s\n\n", *line);
+			printf("content: %s\n", line_cache);
 			return (result);
 		}
 	}
-	if (!line)
-	{
-		return (0);
-	}
-	return (1);
+	return (0);
 }
 #include <fcntl.h>
 int main(void)
@@ -82,6 +100,7 @@ int main(void)
 
 	fd = open("hola.txt", O_RDONLY);
 	printf("%d\n", fd);
+	printf("result: %d\n", get_next_line(fd, &hi));
 	printf("result: %d\n", get_next_line(fd, &hi));
 	printf("result: %d\n", get_next_line(fd, &hi));
 }
