@@ -6,7 +6,7 @@
 /*   By: mpark-ki <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/21 22:33:58 by mpark-ki          #+#    #+#             */
-/*   Updated: 2019/12/08 19:17:36 by mpark-ki         ###   ########.fr       */
+/*   Updated: 2019/12/08 23:13:48 by mpark-ki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ char		*ft_strjoin(char *s1, char *s2)
 	return (start);
 }
 
-char	*ft_strchr(const char *s, int c)
+char		*ft_strchr(const char *s, int c)
 {
 	while (*s != (unsigned char)c)
 		if (*s++ == '\0')

@@ -6,12 +6,12 @@
 #    By: mpark-ki <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/11/21 22:35:23 by mpark-ki          #+#    #+#              #
-#    Updated: 2019/12/08 19:57:34 by mpark-ki         ###   ########.fr        #
+#    Updated: 2019/12/08 23:11:55 by mpark-ki         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = run
-FLAGS = -Wall -Wextra -Werror -D BUFFER_SIZE=5
+FLAGS = -Wall -Wextra -Werror -D BUFFER_SIZE=1
 FILES = get_next_line_utils.c get_next_line.c
 
 .PHONY: all
