@@ -6,7 +6,7 @@
 /*   By: mpark-ki <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/21 22:33:58 by mpark-ki          #+#    #+#             */
-/*   Updated: 2019/12/07 22:10:22 by mpark-ki         ###   ########.fr       */
+/*   Updated: 2019/12/08 19:17:36 by mpark-ki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,11 +46,19 @@ char		*ft_strjoin(char *s1, char *s2)
 	len = ft_strlen(s1) + ft_strlen(s2) + 1;
 	if (!(result = (char*)malloc(sizeof(char) * len)))
 		return (NULL);
-	result[len] = 0;
 	start = result;
 	while (*s1)
 		*result++ = *s1++;
 	while (*s2)
 		*result++ = *s2++;
+	*result = 0;
 	return (start);
+}
+
+char	*ft_strchr(const char *s, int c)
+{
+	while (*s != (unsigned char)c)
+		if (*s++ == '\0')
+			return (0);
+	return ((char *)s);
 }

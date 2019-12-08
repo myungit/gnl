@@ -6,7 +6,7 @@
 /*   By: mpark-ki <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/21 22:32:45 by mpark-ki          #+#    #+#             */
-/*   Updated: 2019/12/07 22:53:14 by mpark-ki         ###   ########.fr       */
+/*   Updated: 2019/12/08 17:57:23 by mpark-ki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,4 +27,5 @@ typedef struct	s_list
 t_list			*ft_lstnew(int fd, void *content);
 char			*ft_strjoin(char *s1, char *s2);
 int				ft_strlen(char *s);
+char			*ft_strchr(const char *s, int c);
 #endif
