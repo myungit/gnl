@@ -1,17 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.h                                    :+:      :+:    :+:   */
+/*   get_next_line_bonus.h                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mpark-ki <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: myntcake <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/11/21 22:32:45 by mpark-ki          #+#    #+#             */
-/*   Updated: 2019/12/08 17:57:23 by mpark-ki         ###   ########.fr       */
+/*   Created: 2019/12/12 18:18:55 by myntcake          #+#    #+#             */
+/*   Updated: 2019/12/12 18:19:03 by myntcake         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef GET_NEXT_LINE_H
-# define GET_NEXT_LINE_H
+#ifndef GET_NEXT_LINE_BONUS_H
+# define GET_NEXT_LINE_BONUS_H
 # include <stdlib.h>
 # include <sys/types.h>
 # include <sys/uio.h>

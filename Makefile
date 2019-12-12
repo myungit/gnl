@@ -11,7 +11,7 @@
 # **************************************************************************** #
 
 NAME = run
-FLAGS = -Wall -Wextra -Werror -D BUFFER_SIZE=1
+FLAGS = -Wall -Wextra -Werror -g -D BUFFER_SIZE=8
 FILES = get_next_line_utils.c get_next_line.c
 
 .PHONY: all

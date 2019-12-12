@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line_utils.c                              :+:      :+:    :+:   */
+/*   get_next_line_utils_bonus.c                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mpark-ki <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: myntcake <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/11/21 22:33:58 by mpark-ki          #+#    #+#             */
-/*   Updated: 2019/12/08 23:13:48 by mpark-ki         ###   ########.fr       */
+/*   Created: 2019/12/12 18:19:11 by myntcake          #+#    #+#             */
+/*   Updated: 2019/12/12 18:19:18 by myntcake         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "get_next_line_bonus.h"
 
 t_list		*ft_lstnew(int fd, void *content)
 {
