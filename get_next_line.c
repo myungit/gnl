@@ -6,7 +6,7 @@
 /*   By: mpark-ki <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/21 22:29:38 by mpark-ki          #+#    #+#             */
-/*   Updated: 2019/12/12 18:26:51 by myntcake         ###   ########.fr       */
+/*   Updated: 2019/12/16 17:24:45 by mpark-ki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,10 +37,7 @@ int			ft_read_line(t_list *move_lst, int fd, char *buff, char **line)
 		{
 			*after++ = '\0';
 			*line = (move_lst->content);
-			if (*after)
-				move_lst->content = ft_strdup(after);
-			else
-				move_lst->content = ft_strdup("");
+			move_lst->content = (*after) ? ft_strdup(after) : ft_strdup("");
 			return (1);
 		}
 		if (result == 0)
