@@ -5,12 +5,13 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: mpark-ki <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/12/16 16:32:54 by mpark-ki          #+#    #+#             */
-/*   Updated: 2019/12/16 17:27:12 by mpark-ki         ###   ########.fr       */
+/*   Created: 2019/12/16 20:16:32 by mpark-ki          #+#    #+#             */
+/*   Updated: 2019/12/16 20:16:41 by mpark-ki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+
+#include "get_next_line_bonus.h"
 
 t_list		*ft_position_list(t_list *move_lst, int fd)
 {
@@ -37,7 +38,7 @@ int			ft_read_line(t_list *move_lst, int fd, char *buff, char **line)
 		{
 			*after++ = '\0';
 			*line = (move_lst->content);
-			move_lst->content = (*after) ? ft_strdup(after) : ft_strdup("");
+			move_lst->content = ft_strdup(after);
 			return (1);
 		}
 		if (result == 0)
@@ -47,8 +48,21 @@ int			ft_read_line(t_list *move_lst, int fd, char *buff, char **line)
 			return (0);
 		}
 	}
-	*line = ft_strdup("");
 	return (-1);
+}
+
+void		ft_clearlist(t_list *head_lst, t_list *move_lst)
+{
+	t_list			*tmp;
+
+	tmp = head_lst;
+	while (tmp && (tmp->next != move_lst))
+		tmp = tmp->next;
+	if (tmp && (tmp->next == move_lst))
+	{
+		tmp->next = move_lst->next;
+		free(move_lst);
+	}
 }
 
 int			get_next_line(int fd, char **line)
@@ -62,10 +76,11 @@ int			get_next_line(int fd, char **line)
 		return (-1);
 	if (!head_lst)
 		head_lst = ft_lstnew(fd, "");
-	move_lst = head_lst;
-	move_lst = ft_position_list(move_lst, fd);
+	move_lst = ft_position_list(head_lst, fd);
 	result = (ft_read_line(move_lst, fd, buff, line));
 	if (result == -1)
 		free(move_lst);
+	else if (result == 0)
+		ft_clearlist(head_lst, move_lst);
 	return (result);
 }
