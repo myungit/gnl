@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line_utils.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mpark-ki <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: myntcake <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/11/21 22:33:58 by mpark-ki          #+#    #+#             */
-/*   Updated: 2019/12/16 21:10:02 by mpark-ki         ###   ########.fr       */
+/*   Created: 2019/12/19 20:19:26 by myntcake          #+#    #+#             */
+/*   Updated: 2019/12/19 20:19:35 by myntcake         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,7 @@ char		*ft_strjoin(char *s1, char *s2)
 	char	*result;
 	char	*start;
 	size_t	len;
+	size_t	i;
 
 	if (!s1 || !s2)
 		return (0);
@@ -64,11 +65,13 @@ char		*ft_strjoin(char *s1, char *s2)
 	if (!(result = (char*)malloc(sizeof(char) * len)))
 		return (0);
 	start = result;
-	while (*s1)
-		*result++ = *s1++;
+	i = 0;
+	while (s1[i])
+		*result++ = s1[i++];
 	while (*s2)
 		*result++ = *s2++;
 	*result = 0;
+	free(s1);
 	return (start);
 }
 
