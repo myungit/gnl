@@ -3,17 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mpark-ki <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: myntcake <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/12/16 20:16:32 by mpark-ki          #+#    #+#             */
-/*   Updated: 2019/12/19 20:48:15 by myntcake         ###   ########.fr       */
+/*   Created: 2019/12/24 19:28:28 by myntcake          #+#    #+#             */
+/*   Updated: 2019/12/24 19:40:24 by myntcake         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line_bonus.h"
-#include <stdio.h>
-#include <fcntl.h>
-#include <sys/stat.h>
 
 t_list		*ft_position_list(t_list *move_lst, int fd)
 {
@@ -59,28 +56,26 @@ int			ft_read_line(t_list *move_lst, int fd, char *buff, char **line)
 	return (-1);
 }
 
-void		ft_clearlist(t_list *head_lst, t_list *move_lst)
+void		ft_clearlist(t_list **head_lst, t_list *move_lst)
 {
 	t_list			*tmp;
-	t_list			*prev;
+	t_list			*erase;
 
-	tmp = head_lst;
+	tmp = *head_lst;
 	if (tmp->fd == move_lst->fd)
 	{
-		head_lst = tmp->next;
+		*head_lst = tmp->next;
 		free(tmp);
 	}
 	else
 	{
-		while (tmp && ((tmp->fd) != move_lst->fd))
-		{
-			prev = tmp;
+		while (tmp && ((tmp->next)->fd != move_lst->fd))
 			tmp = tmp->next;
-		}
-		if (tmp)
+		if ((tmp->next)->fd == move_lst->fd)
 		{
-			prev->next = tmp->next;
-			free(tmp);
+			erase = tmp->next;
+			tmp->next = move_lst->next;
+			free(erase);
 		}
 	}
 }
@@ -99,11 +94,13 @@ int			get_next_line(int fd, char **line)
 	move_lst = ft_position_list(head_lst, fd);
 	result = (ft_read_line(move_lst, fd, buff, line));
 	if (result < 1)
-		move_lst->content = ft_strdup("");
+		ft_clearlist(&head_lst, move_lst);
 	return (result);
 }
-
 /*
+#include <stdio.h>
+#include <fcntl.h>
+#include <sys/stat.h>
 int main()
 {
 	int             fd;
