@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: myntcake <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: mpark-ki <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/12/24 19:28:28 by myntcake          #+#    #+#             */
-/*   Updated: 2019/12/24 19:40:24 by myntcake         ###   ########.fr       */
+/*   Created: 2019/12/25 17:23:05 by mpark-ki          #+#    #+#             */
+/*   Updated: 2019/12/25 17:23:15 by mpark-ki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,46 +97,3 @@ int			get_next_line(int fd, char **line)
 		ft_clearlist(&head_lst, move_lst);
 	return (result);
 }
-/*
-#include <stdio.h>
-#include <fcntl.h>
-#include <sys/stat.h>
-int main()
-{
-	int             fd;
-	int             i;
-	int             j;
-	char    		*line = 0;
-	char			*lineadress[66];
-
-	j = 1;
-	printf("\n==========================================\n");
-	printf("========== TEST 1 : The Alphabet =========\n");
-	printf("==========================================\n\n");
-
-	if (!(fd = open("alphabet", O_RDONLY)))
-	{
-		printf("\nError in open\n");
-		return (0);
-	}
-	while ((i = get_next_line(fd, &line)) > 0)
-	{
-		printf("|%s\n", line);
-		lineadress[j - 1] = line;
-		j++;
-	}
-	printf("|%s\n", line);
-	free(line);
-	close(fd);
-
-	if (i == -1)
-		printf ("\nError in Fonction - Returned -1\n");
-	else if (j == 66)
-		printf("\nRight number of lines\n");
-	else if (j != 66)
-		printf("\nNot Good - Wrong Number Of Lines\n");
-	while (--j > 0)
-		free(lineadress[j - 1]);
-	j = 1;
-}
-*/
